@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-struct bignum//大数机构体
+struct bignum//大数结构体
 {
     int num[25], len;
     bignum()//初始化构造方法
