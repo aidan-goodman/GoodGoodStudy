@@ -147,3 +147,96 @@ public class Main {
 
 }
 ```
+
+### DNA
+**题目：**
+输入包含多组测试数据，根据输入的组数和每组的数据打印出目标图形
+
+*输入：*
+第一个整数N(N<=15)表示组数，每组数据包含两个整数a,b;其中a(3<=a<=39)表示一个单位的DNA串的行数，恒为奇数。b(1<=b<=20)表示重复度
+
+*输出：*
+输出DNA的形状，每组输出间有空行
+
+*样例输入：*
+>２
+>3 1
+>5 4
+
+*样例输出：*
+```ditaa {cmd=true args=["-E"]}
+X X
+ X
+X X
+
+X   X
+ X X
+  X
+ X X
+X   X
+ X X
+  X
+ X X
+X   X
+ X X
+  X
+ X X
+X   X
+ X X
+  X
+ X X
+X   X
+```
+
+**思路：**
+* 每组分布是有规律的：
+  * X的分布：`row == column || row == a - column - 1`
+  * 空格的分布：`row > column || row < a - column - 1`
+* 根据分布规律将每个字符存入a行a列的字符数组中，然后根据组数进行输出
+
+**代码：**
+```java{.line-numbers}
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();//读取组数
+
+        while (0 != N--) {//设置N组数据的循环
+            int a, b;
+            a = scanner.nextInt();
+            b = scanner.nextInt();
+            char[][] map = new char[a][a];//建立一个a行a列的字符数组
+            //根据分布规则进行赋值
+            for (int i = 0; i < a; i++) {
+                for (int j = 0; j < a; j++) {
+                    if (i == j || i == a - j - 1) {
+                        map[i][j] = 'X';
+                    } else if (i > j || i < a - j - 1) {
+                        map[i][j] = ' ';
+                    } else {//出现两个X之后的字符赋予N，这样的目的是输出时有所判断不会输出多余的空格
+                        map[i][j] = 'N';
+                    }
+                }
+            }
+
+            for (char c : map[0]) {//输出第一行，第一行只可能为X或空格
+                System.out.print(c);
+            }
+            System.out.println();
+            for (int i = 0; i < b; i++) {//根据重复度从第二行开始输出
+                for (int j = 1; j < a; j++) {
+                    for (char tempC : map[j]) {
+                        if (tempC != 'N') {//输出每行不为N的字符
+                            System.out.print(tempC);
+                        }
+                    }
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+}
+```
