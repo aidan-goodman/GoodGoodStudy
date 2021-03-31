@@ -240,3 +240,123 @@ public class Test {
 
 }
 ```
+
+### IP 判断
+
+**题目：**
+判断一个IP字符串的合法性。合法的IP是这样的形式：A.B.C.D,其中 A、B、C、D 均为位于[0, 255]中的整数
+为了简单起见，我们规定这四个整数中不允许有前导零存在，如001这种情况
+
+*输入：*
+输入由多行组成，每行是一个字符串，输入由“End of file”结束
+
+*输出：*
+对于每一个输入，单独输出一行，如果该字符串是合法的IP，输出Y,否则，输出N
+
+*样例输入：*
+>1.2.3.4
+a.b.c.d
+267.43.64.12
+12.34.56.bb
+210.43.64.129
+-123.4.5.6
+
+*样例输出：*
+>Y
+N
+N
+N
+Y
+N
+
+**思路：**
+1. 通过字符串获取一行用`split()`方法根据'.'进行分割成字符串数组
+2. 判断时需要将字符串转换为`Int`型，可以使用`Integer.parseInt(String s)`的方法，但如果不全是数字会报错，加一个异常抛出，如果捕获到异常说明不符合IP规范，无异常进行范围的判断
+
+**代码：**
+
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String str = scanner.nextLine();
+            if ("End of file".equals(str)) {//遇到End of file程序结束
+                break;
+            }
+            String[] arr = str.split("\\.");//分割使用转义字符的方式
+            boolean flag = true;
+            for (int i = 0; i < arr.length; i++) {
+                try {
+                    if (Integer.parseInt(arr[i]) <= 255 & Integer.parseInt(arr[i]) >= 0) {
+
+                    } else {//不符合IP范围，令flag为false
+                        flag = false;
+                        break;
+                    }
+                } catch (Exception e) {//非数字转换出错，令flag为false
+                    flag = false;
+                    break;
+                }
+
+            }
+            if (flag) {
+                System.out.println('Y');
+            } else {
+                System.out.println('N');
+            }
+        }
+    }
+
+}
+```
+
+### Tom 数
+
+**题目：**
+正整数的各位数字之和被Tom称为Tom数
+输入一个数N($N<2^{32}$),求N的Tom数
+
+*输入：*
+每行输入一个整数N
+
+*输出：*
+每行一个输出，对应N的各位数之和
+
+*样例输入：*
+>12345
+56123
+82
+
+*样例输出：*
+>15
+17
+10
+
+**思路：**
+使用字符串获取每行输入的N，使用`charAt()`的方式进行字符的遍历，遍历出的每个数字减去0的ASCII码获得这个数字本身的值相加即可
+
+**代码：**
+
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String str = scanner.next();
+            int sum = 0;
+            for (int i = 0; i < str.length(); i++) {
+                sum += str.charAt(i)-'0';//这里的-'0'是减去0的ASCII码得到数字
+            }
+            System.out.println(sum);
+        }
+    }
+
+}
+```
+
+
