@@ -580,3 +580,69 @@ public class Test {
     }
 }
 ```
+
+### 蚂蚁感冒
+
+**题目：**
+长100厘米的细长直杆子上有n 蚂蚁。它们的头有的朝左，有的朝右
+每只蚂蚁都只能沿着杆子向前爬，速度是每秒1cm
+当两只蚂蚁碰面时，它们会同时掉头往相反的方向爬行
+这些蚂蚁中，有1只蚂蚁感冒了，并且在和其它蚂蚁碰面时，会把感冒传染给碰到的蚂蚁
+请你计算，当所有蚂蚁都爬离杆子时，有多少只蚂蚁患上了感冒
+
+*输入：*
+第一行输入一个整数n($1<n<50$)，表示蚂蚁的总数
+接着的一行是n个用空格分开的整数Xi($-100<X_i<100$)，Xi的绝对值，表示蚂蚁离开杆子左边端点的距离。正值表示头朝右，负值表示头朝左，数据中不会出现0值，也不会出现两只蚂蚁占用同一位置。其中，第一个数据代表的蚂蚁感冒了
+
+*输出：*
+要求输出1个整数，表示最后感冒蚂蚁的数目
+
+*样例输入：*
+>5
+-10 8 -20 12 25
+
+*样例输出：*
+>3
+
+**思路：**
+* 每个蚂蚁速度相同，所以不存在后边的蚂蚁感冒追上前边蚂蚁的情况发生，而且与感冒的蚂蚁（叫做X）相对的一定会被感染
+* 被感染的蚂蚁与X没有任何区别，那么掉头可以看作两只蚂蚁碰头后穿过继续走
+* 当X传染给相对蚂蚁后，被传染的蚂蚁继续走的情况下就又会传染给与他相对的其他蚂蚁，反之也相同
+* 那么可以分左右进行判断，对X以外的蚂蚁依次读入，判断是否与X相对，除了相对会被传染外还有跟随在X后边的蚂蚁，当有被X传染的蚂蚁就表示跟随X的蚂蚁也会被传染，需要将跟随的蚂蚁数量记录下来，最后判断是否需要添加
+
+**代码：**
+```java{.line-numbers}
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int first = scanner.nextInt();
+        int sum = 1, next = 0;
+        boolean flag = false;
+
+        while (--N != 0) {
+            int temp = scanner.nextInt();
+            if (first > 0) {//当感冒的蚂蚁朝右
+                if (Math.abs(temp) > first && temp < 0) {//与其相对时必感冒
+                    flag = true;
+                    sum++;
+                } else if (temp < first && temp > 0) {//在其后边跟随的
+                    next++;
+                }
+            }
+            if (first < 0) {//感冒蚂蚁朝左
+                if (Math.abs(temp) < Math.abs(first) && temp > 0) {//与其相对时必感冒
+                    flag = true;
+                    sum++;
+                } else if (temp < first) {
+                    next++;
+                }
+            }
+        }
+        sum += flag ? next : 0;
+        System.out.println(sum);
+    }
+}
+```
