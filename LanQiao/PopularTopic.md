@@ -646,3 +646,167 @@ public class Test {
     }
 }
 ```
+
+### 错误票据
+
+**题目：**
+某涉密单位下发了某种票据，并要在年终全部收回。每张票据有唯一的ID号，所有票据的ID号是连续的，但ID的开始数码是随机选定的。因为工作人员疏忽，在录入ID号的时候发生了一处错误，造成了某个ID断号，另外一个ID重号。通过编程，找出断号的ID和重号的ID
+假设断号不可能发生在最大和最小号
+
+*输入：*
+要求程序首先输入一个整数N($N<100$)表示后面数据行数
+接着读入N行数据,每行数据长度不等，是用空格分开的若干个(不大于100个)正整数(不大于100000)，请注意行内和行末可能有多余的空格，你的程序需要能处理这些空格
+每个整数代表一个ID号。
+
+*输出：*
+要求程序输出1行，含两个整数m表示断号，n表示重号
+
+*样例输入：*
+>2
+5 6 8 11 9
+10 12 9
+
+*样例输出：*
+>7 9
+
+**思路：**
+主要解决的输入格式，因为是输入不同行，所以可以实例化A、B两个`Scanner`对象，用A获取每行，用B拆解A的每行数据，然后排序判断即可
+
+**代码：**
+```java{.line-numbers}
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        scanner.nextLine();//抵消N后面的换行符
+        int[] arr = new int[10000];
+        int count = 0, interrupt = 0, repeat = 0;
+
+        for (int i = 0; i < N; i++) {
+            Scanner input = new Scanner(scanner.nextLine());//获取每行
+            while (input.hasNext()) {//遍历每行数据
+                arr[count++] = input.nextInt();
+            }
+        }
+        Arrays.sort(arr, 0, count);
+
+        for (int begin = arr[0], i = 0; i < count; i++) {
+            if (begin != arr[i]) {
+                if (arr[i] - arr[i - 1] == 2) {
+                    interrupt = arr[i] - 1;
+                    begin = arr[i];
+                }
+                if (arr[i] == arr[i - 1]) {
+                    repeat = arr[i];
+                    begin = arr[i];
+                }
+            }
+            begin++;
+        }
+        System.out.println(interrupt + " " + repeat);
+    }
+}
+```
+
+### FJ的字符串
+
+**题目：**
+FJ在沙盘上写了这样一些字符串：
+>A1  =  "A"
+A2  =  "ABA"
+A3  =  "ABACABA"
+A4  =  "ABACABADABACABA"
+··· ···
+
+*输入：*
+仅有一个数：N($N≤26$)
+
+*输出:*
+请输出相应的字符串$A_N$，以一个换行符结束
+
+*样例输入：*
+>3
+
+*样例输出：*
+>ABACABA
+
+**思路：**
+字符串变长，避免内存冗余的情况使用`StringBuilder`比较好，使用循环配合ASCII码即可，注意`StringBuilder`每次拼接返回的都是自身所以每次循环时保存一下之前的字符串(使用`char[]`数组节约空间)
+
+**代码：**
+```java{.line-numbers}
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        var sb = new StringBuilder();
+        sb.append('A');
+        for (int i = 1; i < N; i++) {
+            char[] temp = sb.toString().toCharArray();//StringBuilder每次拼接返回自身，先保存一下
+            sb.append((char) (65 + i)).append(temp);
+        }
+        System.out.println(sb);
+    }
+}
+```
+
+### 分解质因数
+
+**题目：**
+求出区间a,b($2≤a≤b≤10000$)中所有整数的质因数分解
+
+*输入：*
+输入两个整数a,b
+
+*输出：*
+每行输出一个数的分解，形如 k=a1*a2*a3···
+
+*样例输入：*
+>3 10
+
+*样例输出：*
+>3=3
+4=2*2
+5=5
+6=2*3
+7=7
+8=2*2*2
+9=3*3
+10=2*5
+
+**思路：**
+1. 质因数分解，就是最后的因子全部变为质数，那这样还需要判断质数本身
+2. 创建从a->b的循环，赋值于临时变量t，t可能重复分解，所以这里用while循环
+3. 如果while循环判断不能进行时继续fori循环，直至`t==i`时说明最大的素数因子已然出现
+
+**代码：**
+```java{.line-numbers}
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        for (int i = a; i <= b; i++) {
+            int temp = i;
+            System.out.print(temp + "=");//输出开头
+            for (int j = 2; j <= temp; j++) {
+                while (temp % j == 0 && temp != j) {//防止除数和被除数相等进入死循环
+                    System.out.print(j + "*");
+                    temp /= j;
+                }
+                if (temp == j) {//相等表示分解完毕
+                    System.out.println(j);
+                }
+            }
+        }
+    }
+}
+```
