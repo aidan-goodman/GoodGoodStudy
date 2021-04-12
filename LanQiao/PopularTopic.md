@@ -17,7 +17,7 @@
 
 **代码：**
 
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Main {
