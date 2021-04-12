@@ -810,3 +810,181 @@ public class Test {
     }
 }
 ```
+
+### 合并链表
+
+**题目：**
+给出两个有序链表，将其合并为一个链表后仍然有序
+
+**思路：**
+使用递归对每一个节点进行比对总是返回较小值
+
+**代码：**
+```java{.line-numbers}
+public class Test {
+    public static void main(String[] args) {
+        Node head1 = new Node(3);
+        Node head2 = new Node(4);
+        Node h1Next1 = new Node(5);
+        Node h2Next1 = new Node(6);
+        Node h1Next2 = new Node(7);
+        Node h2Next2 = new Node(8);
+        Node h1Next3 = new Node(10);
+        head1.next = h1Next1;
+        h1Next1.next = h1Next2;
+        h1Next2.next = h1Next3;
+        head2.next = h2Next1;
+        h2Next1.next = h2Next2;
+        merTwoList(head1, head2);
+        Node temp = head1;
+        for (int i = 0; i < 7; i++) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
+    static Node merTwoList(Node one, Node two) {
+        if (one == null && two == null) {
+            return null;
+        }
+        if (one == null) {
+            return two;
+        }
+        if (two == null) {
+            return one;
+        }
+
+        Node head;
+        if (one.data > two.data) {
+            head = two;
+            head.next = merTwoList(one, two.next);
+        } else {
+            head = one;
+            head.next = merTwoList(two, one.next);
+        }
+        return head;
+    }
+}
+
+class Node {
+    public int data;
+    public Node next;
+
+    public Node(int data) {
+        this.data = data;
+    }
+}
+```
+
+### 打乱数组
+
+**题目：**
+编写一个程序，将数据中的所有数据随机打乱，确保每一个数据都被更换过
+
+**思路：**
+在循环中，使用生成随机数与当前所剩未打乱数据的个数相乘，找出一个符合数组范围的随机数作为下标，将其与当前循环变量的值做下标的数据相调换
+
+**代码：**
+```java{.line-numbers}
+public class Test {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        int len = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            int t = (int) (Math.random() * len--);//长度乘随机数确保每个值都被更换到
+            int temp = arr[i];
+            arr[i] = arr[t];
+            arr[t] = temp;
+        }
+        for (int each : arr) {
+            System.out.println(each);
+        }
+    }
+}
+```
+
+### 等差公式吗？
+
+**题目：**
+给定一个无序数组，判断其是否是一个等差数列(要求时间复杂度为O<sub>n</sub>)
+
+**思路：**
+有时间复杂度的约束可以使用公式来考虑，遍历一遍找出其中的最大最小值然后求出差$d(d=\frac{max-min}{length-1})$，再遍历一遍判断每个值减去$min$后是否能整除$d$
+
+**代码：**
+```java{.line-numbers}
+import java.util.Arrays;
+import java.util.Collections;
+
+public class Test {
+    public static void main(String[] args) {
+        Integer[] arr = {2, 4, 6, 7, 10};
+        var min = (int)Math.floor(Collections.min(Arrays.asList(arr)));
+        var max = (int)Math.floor(Collections.max(Arrays.asList(arr)));
+        var d = (max - min) / (arr.length - 1);
+        boolean flag = true;
+        for (Integer each : arr) {
+            if (0 != (each - min) % d) {
+                flag = false;
+                break;
+            }
+        }
+        System.out.println(flag);
+    }
+}
+```
+
+### 字符串对比
+
+**题目：**
+给定两个仅由大写字母或小写字母组成的字符串(长度介于1到10之间)，它们之间的关系是以下四种情况之一：
+>1. 两个字符串长度不等。比如Beijing和Hebei
+>2. 两个字符串不仅长度相等，而且相应位置上的字符完全一致(区分大小写)，比如Beijing和Beijing
+>3. 两个字符串长度相等，相应位置上的字符仅在不区分大小写的前提下才能达到完全一致(也就是说，它并不满足情况2)，比如  beijing和BEIjing
+>4. 两个字符串长度相等，但是即使是不区分大小写也不能使这两个字符串一致。比如Beijing和Nanjing
+
+编程判断输入的两个字符串之间的关系属于这四类中的哪一类，给出所属的类的编号
+
+*输入：*
+包括两行，每行都是一个字符串
+
+*输出：*
+仅有一个数字，表明这两个字符串的关系编号
+
+*样例输入：*
+>BEIjing
+beiJing
+
+*样例输出：*
+>3
+
+**思路：**
+1. 四个条件相加就是全集，所以最后的条件4无需判断
+2. 引用`String`类中的实用方法`.equals()`和`.compareToIgnoreCase()`
+3. 定义一个num变量用来记录符合的条件，先判断长度，长度相同直接将num赋值为 4，然后进行2、3的判断
+
+**代码：**
+```java{.line-numbers}
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String str1 = scanner.next();
+        String str2 = scanner.next();
+        int num;
+        if (str1.length() != str2.length()) {
+            num = 1;
+        } else {
+            num = 4;
+            if (str1.equals(str2)) {
+                num = 2;
+            }
+            if (0 == str1.compareToIgnoreCase(str2)) {
+                num = 3;
+            }
+        }
+        System.out.println(num);
+    }
+}
+```
