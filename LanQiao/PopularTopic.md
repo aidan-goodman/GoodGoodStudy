@@ -68,7 +68,7 @@ public class Main {
 
 **代码：**
 
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Main {
@@ -123,7 +123,7 @@ public class Main {
 
 **代码：**
 
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Main {
@@ -201,8 +201,7 @@ X   X
 * 根据分布规律将每个字符存入a行a列的字符数组中，然后根据组数进行输出
 
 **代码：**
-
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -282,7 +281,7 @@ N
 
 **代码：**
 
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -347,7 +346,7 @@ public class Test {
 
 **代码：**
 
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -394,7 +393,7 @@ public class Test {
 * 每个人手中的糖果数更新后进行奇数判断，进行相应操作
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -459,7 +458,7 @@ public class Test {
 * 设置一个计数器，在没有符合条件的值出现时输出"-1"
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -520,7 +519,7 @@ public class Test {
   * 公式为`T(m)=(((a+a+n-1)*n/2)+T(m-1))%k;`
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -559,7 +558,7 @@ public class Test {
 其实就是求最小公倍数，因为 a,b,c<30，所以核桃数量最多不会超过`Math.pow(30,3)`
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -611,7 +610,7 @@ public class Test {
 * 那么可以分左右进行判断，对X以外的蚂蚁依次读入，判断是否与X相对，除了相对会被传染外还有跟随在X后边的蚂蚁，当有被X传染的蚂蚁就表示跟随X的蚂蚁也会被传染，需要将跟随的蚂蚁数量记录下来，最后判断是否需要添加
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -673,7 +672,7 @@ public class Test {
 主要解决的输入格式，因为是输入不同行，所以可以实例化A、B两个`Scanner`对象，用A获取每行，用B拆解A的每行数据，然后排序判断即可
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -737,7 +736,7 @@ A4  =  "ABACABADABACABA"
 字符串变长，避免内存冗余的情况使用`StringBuilder`比较好，使用循环配合ASCII码即可，注意`StringBuilder`每次拼接返回的都是自身所以每次循环时保存一下之前的字符串(使用`char[]`数组节约空间)
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -785,7 +784,7 @@ public class Test {
 3. 如果while循环判断不能进行时继续fori循环，直至`t==i`时说明最大的素数因子已然出现
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
@@ -820,7 +819,7 @@ public class Test {
 使用递归对每一个节点进行比对总是返回较小值
 
 **代码：**
-```java{.line-numbers}
+```java
 public class Test {
     public static void main(String[] args) {
         Node head1 = new Node(3);
@@ -885,7 +884,7 @@ class Node {
 在循环中，使用生成随机数与当前所剩未打乱数据的个数相乘，找出一个符合数组范围的随机数作为下标，将其与当前循环变量的值做下标的数据相调换
 
 **代码：**
-```java{.line-numbers}
+```java
 public class Test {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
@@ -912,7 +911,7 @@ public class Test {
 有时间复杂度的约束可以使用公式来考虑，遍历一遍找出其中的最大最小值然后求出差$d(d=\frac{max-min}{length-1})$，再遍历一遍判断每个值减去$min$后是否能整除$d$
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -964,7 +963,7 @@ beiJing
 3. 定义一个num变量用来记录符合的条件，先判断长度，长度相同直接将num赋值为 4，然后进行2、3的判断
 
 **代码：**
-```java{.line-numbers}
+```java
 import java.util.Scanner;
 
 public class Test {
