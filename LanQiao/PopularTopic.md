@@ -987,3 +987,88 @@ public class Test {
     }
 }
 ```
+
+### 完美的代价
+
+**题目：**
+回文串才是完美的
+现在给你一个串，它不一定是回文的，请你计算最少的交换次数使得该串变成一个完美的回文串
+交换的定义是：交换两个相邻的字符
+> 例如 mamad
+第一次交换 ad : mamda
+第二次交换 md : madma
+第三次交换 ma : madam (回文！完美！)
+
+*输入：*
+第一行是一个整数N，表示接下来的字符串的长度($N≤8000$)
+第二行是一个字符串，只包含小写字母
+
+*输出:*
+如果可能，输出最少的交换次数
+否则输出`Impossible`
+
+*样例输入:*
+>5
+mamad
+
+*样例输出:*
+>3
+
+**思路：**
+* 分支判断，先判断什么情况下不可能组成回文数：当出现奇数次字符的个数超过2次
+* 剩下的情况一定能够组成回文数，模拟的时间复杂度太高，直接用字符串删除的方式判断
+  * 判断第一个出现的字符最后一次出现是在什么位置，将二者直接删除，计算出字符从最后出现的位置到串尾需要换几次，累加后继续递归判断
+  * 如果有个字符出现了奇数次，在几次删除后(也可能初始时)就只有这一个字符处于串首，这种情况直接舍掉，累加其对换到串中需要的次数
+  * 最后字符串的长度小于等于2时无需调换，以此为递归出口
+
+**代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        String str = scanner.next();
+        var arr = new char[N];
+        arr = str.toCharArray();
+        int oddCount = 0;
+
+        int[] flagArr = new int[26];
+        for (char c : arr) {
+            flagArr[c - 'a']++;//记录每个字符出现的次数
+        }
+        for (int k : flagArr) {
+            if (k % 2 != 0) {
+                oddCount++;//记录出现奇数次字符的个数
+            }
+        }
+        if (oddCount > 1) {
+            System.out.println("Impossible");
+        } else {
+            System.out.println(getCount(str));
+        }
+    }
+
+    static int getCount(String str) {//使用递归进行判断
+        int count = 0;
+        if (str.length() == 1 || str.length() == 2) {
+            return count;//长度小于等于2时，无需移动
+        }
+        //取字符串第一个字符最后一次出现的位置
+        int temp = str.lastIndexOf(str.charAt(0));
+        if (temp == 0) {
+            //恰好第一个数就是奇数，截取后面的继续判断
+            count = (str.length() / 2) + getCount(str.substring(1));
+            //假设将首位的唯一奇数放到中间了
+        } else {
+            //0号位字符和已找到temp位置的字符都移除,然后进行递归
+            StringBuilder strBuilder = new StringBuilder(str);
+            strBuilder.deleteCharAt(temp);
+            strBuilder.deleteCharAt(0);
+            count = str.length() - 1 - temp + getCount(strBuilder.toString());
+        }
+        return count;
+    }
+}
+```
