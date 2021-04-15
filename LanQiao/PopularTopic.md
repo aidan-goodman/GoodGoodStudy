@@ -1072,3 +1072,74 @@ public class Test {
     }
 }
 ```
+
+### 龟兔赛跑预测
+
+**题目：**
+一旦任意秒结束后兔子发现自己领先 t 米或以上，它们就会停下来休息 s 秒，对于不同的兔子，t，s 的数值是不同的，但是所有的乌龟却是不到终点不停止
+然而有些比赛相当漫长，全程观看会耗费大量时间，而小华发现只要在每场比赛开始后记录下兔子的速度 v1/秒，乌龟的速度 v2/秒，以及兔子对应的 t、s值，以及赛道的长度l，就能预测出比赛的结果
+
+*输入：*
+输入只有一行，包含用空格隔开的五个正整数 v1、v2、t、s、l，其中数据范围为：$v1,v2≤100;t≤300;s≤10;l≤10000$且为v1、v2的公倍数
+
+*输出：*
+输出包含两行，第一行输出比赛结果：“T” 或 “R” 或 “D”，分别表示乌龟获胜，兔子获胜，或者两者同时到达终点
+第二行输出一个正整数，表示获胜者（或者双方同时）到达终点所耗费的时间（秒数）
+
+*样例输入：*
+>10 5 5 2 20
+
+*样例输出：*
+>D
+4
+
+**思路：**
+1. 分别为兔子和乌龟设置属性：当前时间和当前路程，只要二者都未到达终点便一直循环模拟
+2. 当兔子超过乌龟t米时直接进行时间跳转到s秒之后的处理，可能存在不需s秒乌龟就到达终点，判断一下
+
+**代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int v1, v2, t, s, l;
+        v1 = scanner.nextInt();
+        v2 = scanner.nextInt();
+        t = scanner.nextInt();
+        s = scanner.nextInt();
+        l = scanner.nextInt();
+
+        int timeT = 0;
+        int timeR = 0;
+        int sT = 0;
+        int sR = 0;
+        while (sT < l && sR < l) {//只要没有到达终点就一直循环
+            if (sR - sT < t) {//兔子没超过位置就按秒模拟
+                timeR++;
+                timeT++;
+                sR += v1;
+                sT += v2;
+            } else {//按s的时长相加
+                timeR += s;
+                timeT += s;
+                sT += s * v2;
+                if ((sT > l) && ((sT - l) / v2 > 0)) {//存在乌龟过线不需要s秒的情况
+                    timeT -= (sT - l) / v2;
+                    sT = timeT * v2;
+                    break;
+                }
+            }
+        }
+
+        if (sT == sR) {
+            System.out.println("D\n" + timeR);
+        } else if (sT > sR) {
+            System.out.println("T\n" + timeT);
+        } else {
+            System.out.println("R\n" + timeR);
+        }
+    }
+}
+```
