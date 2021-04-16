@@ -1,6 +1,6 @@
 ## 蓝桥杯普及题
 
-### 用筛选法判断素数
+### 判断素数
 
 **题目：**
 用筛选法求0~N之间的素数
@@ -50,7 +50,7 @@ public class Main {
 }
 ```
 
-### 字符串的输入输出
+### 字符串I/O
 
 **题目：**
 
@@ -201,6 +201,7 @@ X   X
 * 根据分布规律将每个字符存入a行a列的字符数组中，然后根据组数进行输出
 
 **代码：**
+
 ```java
 import java.util.Scanner;
 
@@ -436,7 +437,7 @@ public class Test {
 }
 ```
 
-### 回文数的判断
+### 判断回文数
 
 **题目：**
 本题要求你找到一些5位或6位的十进制回文数字
@@ -1073,6 +1074,86 @@ public class Test {
 }
 ```
 
+### 报时助手
+
+**题目：**
+给定当前的时间，请用英文的读法将它读出来
+时间用时 h 和分 m 表示，在英文的读法中，读一个时间的方法是：
+如果 m 为 0，则将时读出来，然后加上 "o'clock"，如 3:00 读作 "three  o'clock"
+如果 m 不为 0，则将时读出来，然后将分读出来，如 5:30 读作 "five thirty"
+时和分的读法使用的是英文数字的读法，其中 0~20 读作：
+>0:zero,  1:  one,  2:two,  3:three,  4:four,  5:five,  6:six,  7:seven,  8:eight,  9:nine,  10:ten,  11:eleven,  12:twelve,  13:thirteen,  14:fourteen,  15:fifteen,  16:sixteen,  17:seventeen,  18:eighteen,  19:nineteen,  20:twenty, 30:thirty, 40:forty, 50:fifty
+对于大于 20 小于 60 的数字，首先读整十的数，然后再加上个位数，如 31 首先读 30 再加 1 的读法，读作 "thirty one"
+按上面的规则 21:54 读作 "twenty one fifty four"，9:07读作 "nine seven"，0:15 读作 "zero fifteen"
+
+*输入：*
+输入包含两个非负整数 h 和 m，表示时间的时和分。非零的数字前没有前导 0。h 小于 24，m 小于 60。
+
+*输出：*
+输出时间时刻的英文
+
+*样例输入：*
+>0 15
+
+*样例输出：*
+>zero fifteen
+
+**思路：**
+1. 先定义一个字符串数组存储既定输出（0~20）；两个变量：h,m 将两个分开判断
+    * 无论 m 的值为任何数，h 并不会受影响（只是输出 `o'clock` 的不同）
+    * h 在 0 和 24 之间，但其实字符串数组的大小只有 21，所以判断 h 是否小于 21，小于输出对应下标的字符串，否则先输出 `twenty` 然后 h-20，再输出 `s[h]`
+2. 然后判断 m，当 `m==0` 时输出 `o'clock`，否则跟 h 一样同理判断，但 m 在 0~60 之间，所以在 20 之后进行每次 + 10 的区间判断
+   
+**代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int h = in.nextInt();
+        int m = in.nextInt();
+        String[] s = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+                "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+                "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
+        //处理时的输出
+        if (h >= 21) {
+            System.out.print("twenty");
+            h = h - 20;
+        }
+        System.out.print(s[h] + " ");
+        //处理分的输出
+        if (m == 0) {
+            System.out.print("o'clock");
+        } else if (m < 21) {
+            System.out.print(s[m]);
+        } else if (m < 30) {
+            System.out.print("twenty");
+            m = m - 20;
+            System.out.print(s[m]);
+        } else if (m == 30) {
+            System.out.print("thirty");
+        } else if (m < 40) {
+            System.out.print("thirty");
+            m = m - 30;
+            System.out.print(s[m]);
+        } else if (m == 40) {
+            System.out.print("forty");
+        } else if (m < 50) {
+            System.out.print("forty");
+            m = m - 40;
+            System.out.print(s[m]);
+        } else if (m == 50) {
+            System.out.print("fifty");
+        } else if (m < 60) {
+            System.out.print("fifty");
+            m = m - 50;
+            System.out.print(s[m]);
+        }
+    }
+}
+```
+
 ### 龟兔赛跑预测
 
 **题目：**
@@ -1139,6 +1220,206 @@ public class Test {
             System.out.println("T\n" + timeT);
         } else {
             System.out.println("R\n" + timeR);
+        }
+    }
+}
+```
+
+### 数组替换
+
+**题目：**
+该函数将数组 b 的前 n 个元素追加到数组 a 的前 m 个元素后，假定数组 a 具有至少存放 m+n 个元素的空间
+例如，如果数组 a 为{22,33,44,55,66,77,88,99}，数组 b 为{20,30,40,50,60,70,80,90}，则调用Add(a,5,b,3)后，将把数组 a 变为{22,33,44,55,66,20,30,40}
+注意数组 b 并没有改变，而且数组 a 中只需改变 n 个元素。
+
+*输入：*
+第一行输入a、b数组的长度，第二、三行输入数组的元素，最后输入m、n表示a数组的m元素后替换为b数组的前n个元素
+
+*输出：*
+最后数组 a 中的元素，两个元素之间以逗号隔开
+* 样例输入 *
+>8 8
+1 2 3 4 5 6 7 8
+9 10 11 12 13 14 15 16
+4 5
+
+*样例输出：*
+>1,2,3,4,9,10,11,12,13
+
+**思路：**
+将a数组长度设置为两数组长度的总和，操作后根据长度判断输出即可
+
+**代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int m = in.nextInt();
+        int n = in.nextInt();
+        int b[] = new int[n];
+        int a[] = new int[m + n];// 注意数组大小
+        for (int i = 0; i < m; i++) {
+            a[i] = in.nextInt();
+        }
+        for (int i = 0; i < n; i++) {
+            b[i] = in.nextInt();
+        }
+        int m1 = in.nextInt();
+        int n1 = in.nextInt();
+        int temp = m1;
+        for (int i = 0; i < n1; i++) {
+            a[temp++] = b[i];
+        }
+        if (m - m1 < n1)
+            m = m1 + n1;// 改变之后 a 数组的大小
+        for (int i = 0; i < m - 1; i++) {
+            System.out.print(a[i] + ",");
+        }
+        System.out.print(a[m - 1]);
+    }
+}
+```
+
+### 质数的积
+
+*此题考查模除公式的应用*
+>(a+b) mod n=((a mod n)+(b mod n)) mod n;
+(a - b) mod n=((a mod n)-(b mod n)+ n) mod n;
+ab mod n =(a mod n)(b mod n) mod n;
+
+**题目：**
+算出前 n 个质数的乘积(只要算出这个数模上 50000 的值)
+
+*输入：*
+仅包含一个正整数 n，其中 n< =100000
+
+*输出:*
+输出一行，即前 n 个质数的乘积模 50000 的值
+
+*样例输入*
+>1
+
+*样例输出:*
+>2
+
+**思路：**
+使用计数器进行N个数的判断，是质数与积相乘取余即可
+
+**代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int i = 2, count = 0;
+        long product = 1;
+        while (count < N) {//从2开始遍历，等计数器到N时停止循环
+            boolean flag = true;
+
+            for (int j = 2; j * j <= i; j++) {//判断质数的另一种方式
+                if (i % j == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag) {
+                product = product * i % 50000;
+                count++;
+            }
+            i++;
+        }
+        System.out.println(product);
+    }
+}
+```
+
+### 乘法运算
+
+**题目：**
+从键盘读入 2 个 100 以内的正整数，进行乘法运算并以竖式输出
+*样例输入：*
+16  8
+*样例输出：*
+```
+  16
+×  8
+━━━━
+ 128
+```
+8×16=128，则第四行 128 右侧对准个位输出
+再例如：87x76
+```
+  87
+× 76
+━━━━
+ 522
+609
+━━━━
+6612
+```
+*输入：*
+输入只有一行，是两个用空格隔开的数字，均在 1~99 之间
+
+*输出：*
+输出为 4 行或 7 行，符合乘法的竖式运算格式(乘号和下划线为特殊符号)
+
+** 思路：**
+1. 首先输出 "x" 和 "━━━" 此类的特殊字符，都应该从题目中复制，要不然出错
+2. 因为输出需要对齐，空格不能适用于多种状况，所以采用 "%nd" 的方式输出
+3. 输出为 4 或 7 行，主要是根据乘数是否为两位数决定，所以要设置一个 b>=10 的判断语句
+4. 如果乘数的个位是 0 那么直接输出 "00" 即可
+
+** 代码：**
+```java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        System.out.printf("%4d\n×%3d\n", a, b);
+        System.out.println("━━━");
+        if (b >= 10) {
+            if (b % 10 == 0) {
+                System.out.println("00");
+            } else {
+                System.out.printf("%4d\n", (b % 10) * a);
+            }
+            System.out.printf("%3d\n━━━\n%4d\n", (b / 10) * a, a * b);
+        }
+    }
+}
+```
+
+### 五次方数
+
+**题目：**
+对一个数十进制表示时的每一位数字乘五次方再求和，会得到一个数的五次方数
+例如：1024 的五次方数为 1+0+32+1024=1057
+有这样一些神奇的数，它的五次方数就是它自己，而且这样的数竟然只有有限多个
+从小到大输出所有这样的数
+
+**思路：**
+因为是有限数，所以首先要判断它的边界
+* 上边界：十进制数中最大的是 9，而 9<sup>5</sup>=59049, 是一个五位数，那最大不会超过每一位都为 9 时的五次方数，也就是 5*9<sup>5</sup>=295245，而当位数是6或者大于6的时候，不论每一位的数是几，它本身的五次方数永远不会超过这个数本身，就没有了相等的可能，所以 295245 是理论上的最大值，这里的边界用实际上最大的六位数 999999 来表示
+* 下边界：0，1 不符合条件，所以可以直接从两位数开始，下边界为 10
+
+**代码：**
+```java
+public class Test {
+    public static void main(String[] args) {
+        for (int i = 10; i < 999999; i++) {
+            int t1 = i % 10, t2 = i / 10 % 10, t3 = i / 100 % 10, t4 = i / 1000 % 10, t5 = i / 10000 % 10, t6 = i / 100000;
+            if (Math.pow(t1, 5) + Math.pow(t2, 5) + Math.pow(t3, 5)
+                    + Math.pow(t4, 5) + Math.pow(t5, 5) + Math.pow(t6, 5) == i) {
+                System.out.println(i);
+            }
         }
     }
 }
