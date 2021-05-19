@@ -4,7 +4,7 @@ InternalWork：CS科班的内功部分（数据结构、组成原理、操作系
 
 当时的学习资源：
 * [组成原理（王道）](https://www.bilibili.com/video/BV1BE411D7ii?from=search&seid=169066781461839217)
-* [组原（唐朔飞）]https://www.bilibili.com/video/BV1WW411Q7PF?from=search&seid=169066781461839217)
+* [组原（唐朔飞）](https://www.bilibili.com/video/BV1WW411Q7PF?from=search&seid=169066781461839217)
 * [数据结构]：《大话数据结构》
 
 LanQiao：参加蓝桥杯比赛时候准备时期刷过的代码,[当时的训练网站](https://www.dotcpp.com/oj/problemset.php?page=1&mark=6)
