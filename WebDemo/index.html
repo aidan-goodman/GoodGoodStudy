@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>XiliUXiliU-不是所有视频都来自吸溜吸溜</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/slide.js" defer></script>
+  </head>
+  <body>
+    <!-- header头部模块开始 -->
+    <div class="header w">
+      <!-- logo -->
+      <div class="logo">
+        <img src="images/logo1.png" alt="" />
+      </div>
+      <!-- nav -->
+      <div class="nav">
+        <ul>
+          <li><a href="#">主站</a></li>
+          <li><a href="#">直播</a></li>
+          <li><a href="#">赛事</a></li>
+          <li><a href="#">番剧</a></li>
+          <li><a href="#">漫画</a></li>
+          <li><a href="#">APP</a></li>
+        </ul>
+      </div>
+      <!-- search -->
+      <div class="search">
+        <input type="text" placeholder="输入关键词" />
+        <button></button>
+      </div>
+      <!-- user -->
+      <div class="user">
+        <a>
+          <img src="images/user.jpg" alt="" style="vertical-align: middle" />
+          &nbsp;&nbsp;啸啊啸啊
+        </a>
+        <aside>
+          <span></span>
+          <ol class="attribute">
+            <li><a href="#favorite">我的关注</a></li>
+            <li>我的收藏</li>
+            <li>创作中心</li>
+            <li>消息通知</li>
+            <li><font color="red">退出登录</font></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+    <!-- header头部模块结束 -->
+    <!-- banner 部分start -->
+    <div class="banner">
+      <div class="w">
+        <!-- 左侧 subnav  -->
+        <div class="subnav">
+          <ul>
+            <li>
+              <a href="#">动画 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">番剧 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">国创 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">美食 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">音乐 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">舞蹈 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">游戏 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">知识 <span>></span></a>
+            </li>
+            <li>
+              <a href="#">科技 <span>></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- 右侧 history -->
+        <div class="history">
+          <div class="history-hd">历史记录</div>
+          <div class="history-bd">
+            <ul>
+              <li>
+                <a
+                  target="BLANK"
+                  href="https://www.bilibili.com/video/BV1za411w7Ld"
+                >
+                  <h4>继续观看 舞小喵</h4>
+                  <p>观看至03:14-性感才是王道</p>
+                </a>
+              </li>
+              <li>
+                <a
+                  target="BLANK"
+                  href="https://www.bilibili.com/video/BV1uw411o7E6?from=search&seid=4973364052035336612"
+                >
+                  <h4>继续观看 小片片说大片</h4>
+                  <p>观看至11:45-瑞克与莫蒂S5E1</p>
+                </a>
+              </li>
+              <li>
+                <a
+                  target="BLANK"
+                  href="https://www.bilibili.com/video/BV1u64y1y7mH"
+                >
+                  <h4>继续观看 孝警阿特</h4>
+                  <p>观看至07:23-又是抓粉丝的一天</p>
+                </a>
+              </li>
+            </ul>
+            <a href="#" class="all">全部历史</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- banner 部分end -->
+    <!-- goods START -->
+    <div class="goods w" id="favorite">
+      <h3>关注UP</h3>
+      <div class="goods-item">
+        | <a href="#">小片片说大片</a> | <a href="#">电影最TOP</a> |
+        <a href="#">舞小喵</a> | <a href="#">谭乔交通</a> |
+        <a href="#">孝警阿特</a> | <a href="#">一只姜茶茶</a>
+      </div>
+      <div class="mod">更改</div>
+    </div>
+    <!-- goods END -->
+    <!-- Slideshow start -->
+    <div class="Slideshow">
+      <div class="box-hd">
+        <h3>当前热门</h3>
+        <a href="#">查看全部</a>
+      </div>
+      <section>
+        <div class=""><img src="images/carouselPic1.jpg" /></div>
+        <div class=""><img src="images/carouselPic2.jpg" /></div>
+        <div class=""><img src="images/carouselPic3.jpg" /></div>
+        <div class=""><img src="images/carouselPic4.jpg" /></div>
+        <div class=""><img src="images/carouselPic5.jpg" /></div>
+        <div class=""><img src="images/carouselPic6.jpg" /></div>
+      </section>
+      <div class="container">
+        <!-- 先把第一张图片显示出来 -->
+        <img class="on" id="test" src="images/slidePic1.png" />
+        <img src="images/slidePic2.png" />
+        <img src="images/slidePic3.png" />
+        <img src="images/slidePic4.png" />
+        <!-- 左右切换 -->
+        <div class="left"><</div>
+        <div class="right">></div>
+        <!-- 焦点 -->
+        <ul>
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Slideshow end -->
+    <!-- box start -->
+    <div class="box w">
+      <div class="box-hd">
+        <h3>精品推荐</h3>
+        <a href="#">查看全部</a>
+      </div>
+      <div class="box-bd clearfix">
+        <ul>
+          <li>
+            <img src="images/hot.png" alt="" class="hot" />
+            <img src="images/player.png" class="player" />
+            <img src="images/picture1.jpg" alt="" />
+            <h4>职场微课堂 - 工资两年翻五倍的职场心得</h4>
+            <p><span>职场</span> • 1.3K播放量</p>
+          </li>
+          <li>
+            <img src="images/hot.png" alt="" class="hot" />
+            <img src="images/player.png" class="player" />
+            <img src="images/picture2.jpg" alt="" />
+            <h4>成年人的旅游 - 与老板爬山的经历</h4>
+            <p><span>职场&Vlog</span> • 300收藏</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture3.jpg" alt="" />
+            <h4>
+              高领毛衣真的是多余的吗？<br />
+              &nbsp;
+            </h4>
+            <p><span>健康&生理</span> • 1024转发</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture4.jpg" alt="" />
+            <h4>
+              蜈蚣小姐的鞋柜 - 快递篇<br />
+              &nbsp;
+            </h4>
+            <p><span>穿搭</span> • 3.4K播放量</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture5.jpg" alt="" />
+            <h4>比带男朋友优先级更高的旅行好物</h4>
+            <p><span>旅行</span> • 233正在观看</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture6.jpg" alt="" />
+            <h4>成长书单 - 不得不懂的经济学知识</h4>
+            <p><span>知识&提升</span> • 1.2K点赞</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture7.jpg" alt="" />
+            <h4>
+              教学篇 - 想在年会SLAY全场吗？<br />
+              &nbsp;
+            </h4>
+            <p><span>舞蹈&教程</span> • 1233人在学习</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture8.jpg" alt="" />
+            <h4>
+              今晚的风是杜鹃花香<br />
+              &nbsp;
+            </h4>
+            <p><span>恋爱&Vlog</span> • 5K播放量</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture9.jpg" alt="" />
+            <h4>
+              听说大半夜，夜宵和追剧更配哦<br />
+              &nbsp;
+            </h4>
+            <p><span>美食</span> • 387正在观看</p>
+          </li>
+          <li>
+            <img src="images/player.png" class="player" />
+            <img src="images/picture10.jpg" alt="" />
+            <h4>
+              测评 - 蕾哈娜的眼影行不行<br />
+              &nbsp;
+            </h4>
+            <p><span>美妆</span> • 700收藏</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- box end -->
+
+    <!-- footer start -->
+    <div class="footer">
+      <div class="w">
+        <!-- 左侧 -->
+        <div class="copyright">
+          <img src="images/logo1.png" alt="" />
+          <p>
+            吸溜吸溜视频网致力成为全国最大的流媒体网站，不是所有视频都来自吸溜吸溜<br />
+            © 12318全国文化市场举报网站 | 沪公网安备31011002002436号 |
+            儿童色情信息举报专区 | 扫黄打非举报
+          </p>
+          <a href="#" class="app"> 下载 app</a>
+        </div>
+        <!-- 右侧 -->
+        <div class="links">
+          <dl>
+            <dt>关于XiLiu</dt>
+            <dd><a href="#">关于</a></dd>
+            <dd><a href="#">管理团队</a></dd>
+            <dd><a href="#">工作机会</a></dd>
+            <dd><a href="#">客户服务</a></dd>
+            <dd><a href="#">帮助</a></dd>
+          </dl>
+          <dl>
+            <dt>新手指南</dt>
+            <dd><a href="#">如何注册</a></dd>
+            <dd><a href="#">如何举报</a></dd>
+            <dd><a href="#">如何上传作品</a></dd>
+            <dd><a href="#">吉欧是什么</a></dd>
+            <dd><a href="#">充值吉欧未到账怎么办</a></dd>
+          </dl>
+
+          <dl>
+            <dt>合作伙伴</dt>
+            <dd><a href="#">看看新闻</a></dd>
+            <dd><a href="#">哔哩哔哩</a></dd>
+            <dd><a href="#">962110</a></dd>
+            <dd>
+              <a href="#"><img src="images/goTop.png" /></a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <!-- footer end -->
+  </body>
+</html>
