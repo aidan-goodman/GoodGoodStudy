@@ -1,0 +1,531 @@
+/*css 初始化代码 css reset*/
+/*清除元素默认的内外边距*/
+* {
+  margin: 0;
+  padding: 0;
+}
+/*清除列表样式*/
+li {
+  list-style: none;
+}
+/*取消表单的轮廓线*/
+input {
+  outline: none;
+}
+/*去掉button 默认自带的边框*/
+button {
+  border: none;
+}
+body {
+  background-color: #f3f5f7;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
+/*清除浮动的*/
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+.w {
+  width: 1200px;
+  margin: auto;
+}
+.fixedbar {
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  z-index: 999;
+  /*-600 版心的一半  + 自己的宽度  = 780 */
+  margin-left: -790px;
+  width: 180px;
+  height: 420px;
+  background-color: pink;
+}
+/*header start*/
+.header {
+  height: 42px;
+  /*background-color: pink;*/
+  margin: 30px auto;
+}
+.logo {
+  float: left;
+  margin-right: 25px;
+}
+.nav {
+  float: left;
+}
+.nav ul li {
+  float: left;
+}
+.nav ul li a {
+  display: block;
+  height: 40px;
+  padding: 0 5px;
+  margin-right: 5px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #050505;
+  text-decoration: none;
+}
+/*鼠标经过链接 才有底边框*/
+.nav ul li a:hover {
+  border-bottom: 2px solid #00a4ff;
+}
+.search {
+  float: left;
+  margin-left: 30px;
+}
+.search input {
+  float: left;
+  width: 340px;
+  height: 40px;
+  border: 1px solid #00a4ff;
+  border-right: 0;
+  padding-left: 20px;
+  color: #000;
+}
+.search button {
+  float: left;
+  width: 50px;
+  height: 42px;
+  background: url(../images/btn.png);
+}
+.user {
+  float: left;
+  height: 42px;
+  line-height: 42px;
+  margin-left: 60px;
+  font-size: 14px;
+  color: #666;
+}
+.user aside {
+  display: none;
+  float: initial;
+}
+.user aside ol li {
+  display: block;
+  background-color: #f3f5f7;
+  height: 30px;
+  padding-left: 20px;
+  line-height: 30px;
+  font-size: 15px;
+  align-content: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.user aside ol li a {
+  color: #000;
+}
+.user:hover aside {
+  display: block;
+}
+.user aside ol li:hover {
+  background-color: #00a4ff;
+}
+/*banner start*/
+.banner {
+  height: 420px;
+  background: url(../images/background.jpg) no-repeat top center;
+}
+.subnav {
+  float: left;
+  width: 75px;
+  position: absolute;
+  left: -200px;
+  top: 102px;
+  opacity: 0;
+  transition: all 1s ease-in 0s;
+  height: 420px;
+  padding: 0 20px;
+  /*背景半透明*/
+  background: rgba(0, 0, 0, 0.3);
+}
+.subnav li {
+  height: 45px;
+  line-height: 45px;
+}
+.subnav li a {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+.subnav li a:hover {
+  color: #00b4ff;
+}
+.subnav span {
+  float: right;
+}
+.history {
+  width: 228px;
+  height: 300px;
+  background-color: #fff;
+
+  position: absolute;
+  left: 1004px;
+  top: 160px;
+  opacity: 0;
+  transition: all 1s ease-in 0s;
+}
+.history-hd {
+  height: 36px;
+  background-color: #00a4ff;
+  font-size: 18px;
+  text-align: center;
+  line-height: 36px;
+  color: #fff;
+  /*文字加粗*/
+  /*font-weight: bold;*/
+  font-weight: 700;
+}
+.history-bd {
+  /*没有宽度的盒子 padding 不会撑开盒子*/
+  padding: 0 15px;
+}
+.history-bd ul {
+  /*外边距塌陷的问题
+	margin-top: 10px;*/
+  padding-top: 10px;
+}
+.history-bd li {
+  /*行高等与高度 只能让单行文本垂直居中*/
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10px;
+}
+.history-bd li h4 {
+  font-size: 14px;
+  color: #4e4e4e;
+}
+.history-bd li p {
+  font-size: 12px;
+  color: #a5a5a5;
+}
+.all {
+  display: block;
+  height: 38px;
+  border: 1px solid #00a4ff;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #00a4ff;
+  text-align: center;
+  line-height: 38px;
+}
+.all:hover {
+  background-color: #00a4ff;
+  color: #fff;
+}
+.banner:hover .subnav {
+  position: absolute;
+  left: 32px;
+  top: 102px;
+  opacity: 0.8;
+}
+.banner:hover .history {
+  position: absolute;
+  left: 1004px;
+  top: 160px;
+  opacity: 1;
+}
+/*banner end*/
+/*goods start*/
+.goods {
+  height: 60px;
+  background-color: #fff;
+  margin-top: 10px;
+  /*利用行高可以继承的特性*/
+  line-height: 60px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.goods h3 {
+  float: left;
+  margin: 0 30px;
+  font-size: 16px;
+  color: #00a4ff;
+}
+.goods-item {
+  float: left;
+  color: #bfbfbf;
+}
+.goods-item a {
+  font-size: 16px;
+  color: #050505;
+  margin: 0 30px;
+}
+.mod {
+  float: right;
+  margin-right: 30px;
+  font-size: 14px;
+  color: #00a4ff;
+}
+/*goods end*/
+/* SlideShow start */
+.Slideshow {
+  margin-top: 10px;
+  margin-left: 30px;
+  /* perspective: 3000px; */
+}
+section {
+  width: 280px;
+  height: 360px;
+  margin-left: 192px;
+  margin-bottom: 10px;
+  transform-style: preserve-3d;
+  animation: rotate 10s linear infinite;
+}
+
+section div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+section div:nth-child(1) {
+  transform: translateZ(300px);
+}
+
+section div:nth-child(2) {
+  transform: rotateY(60deg) translateZ(300px);
+}
+
+section div:nth-child(3) {
+  transform: rotateY(120deg) translateZ(300px);
+}
+
+section div:nth-child(4) {
+  transform: rotateY(180deg) translateZ(300px);
+}
+
+section div:nth-child(5) {
+  transform: rotateY(240deg) translateZ(300px);
+}
+
+section div:nth-child(6) {
+  transform: rotateY(300deg) translateZ(300px);
+}
+
+ @keyframes rotate {
+  0% {
+    transform: rotateY(0);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+} 
+
+section:hover {
+  animation-play-state: paused;
+}
+
+/*首先准备一个放图片的容器*/
+.container {
+  width: 525px;
+  height: 360px;
+  position: absolute;
+  top: 661px;
+  right: 30px;
+
+  /*border: 1px solid #ccc;*/
+}
+/*图片样式*/
+.container img {
+  position: absolute; /*把所有图片放在同一个位置*/
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.5s; /*设置过渡时间*/
+  opacity: 0; /*把所有图片变透明*/
+}
+/*图片显示开关*/
+.container img.on {
+  opacity: 1; /*用于显示图片*/
+}
+/*左右按钮 为了简便就用大于小于号*/
+.left,
+.right {
+  position: absolute;
+  top: 40%;
+  width: 30px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #666;
+  opacity: 0.5;
+  text-align: center;
+  font-size: 40px;
+  color: #ccc;
+  display: none; /*先隐藏按钮*/
+  cursor: pointer; /*设置鼠标悬停时的样式*/
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.container:hover .left,
+.container:hover .right {
+  display: block; /*鼠标悬停才容器范围内时显示按钮*/
+}
+.left:hover,
+.right:hover {
+  color: #fff;
+}
+/*焦点*/
+.container ul {
+  position: absolute;
+  bottom: 0;
+}
+.container ul li {
+  list-style: none;
+  float: left;
+  background-color: #ccc;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.container ul li.active {
+  background-color: #282923; /*焦点激活时的样式*/
+}
+/* SlideShow end */
+/*box start*/
+.box {
+  margin-top: 10px;
+}
+.box-hd {
+  height: 60px;
+  line-height: 60px;
+  /*background-color: pink;*/
+}
+.box-hd h3 {
+  float: left;
+  font-size: 20px;
+  color: #494949;
+  /*让粗体不加粗 400 == normal*/
+  font-weight: 400;
+}
+.box-hd a {
+  float: right;
+  margin-right: 30px;
+  font-size: 12px;
+  color: #a5a5a5;
+}
+.box-bd {
+  /*这个盒子一定不要给高度 因为我们可能放一行 也可能是2行 或者n行*/
+  /*宽度呢？ 呵呵*/
+  /*box-bd 宽度 超过了 版心 1200 是可以的，就就解决了问题*/
+  width: 1215px;
+}
+.box-bd li {
+  position: relative;
+  float: left;
+  width: 228px;
+  height: 250px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.box-bd li img {
+  width: 100%;
+  opacity: 1;
+  transition: all 0.5s ease-in 0s;
+}
+.box-bd .hot {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 40px;
+}
+
+.box-bd .player {
+  position: absolute;
+  top: 20px;
+  left: 60px;
+  width: 100px;
+  opacity: 0;
+  transition: all 0.5s ease-in 0s;
+}
+.box-bd li h4 {
+  margin: 10px;
+  font-size: 14px;
+  color: #050505;
+  font-weight: 400;
+}
+.box-bd li p {
+  margin: 0 10px;
+  font-size: 12px;
+  color: #999;
+}
+.box-bd p span {
+  color: orange;
+}
+.box-bd li:hover h4 {
+  color: coral;
+}
+.box-bd li:hover img {
+  opacity: 0.5;
+}
+.box-bd li:hover .player {
+  opacity: 1;
+}
+/*box end */
+/*footer*/
+.footer {
+  height: 180px;
+  margin-top: 20px;
+  padding-top: 30px;
+  background-color: #fff;
+}
+.copyright {
+  float: left;
+}
+.copyright p {
+  font-size: 13px;
+  color: #666;
+  margin: 20px 0 15px 0;
+}
+.app {
+  display: block;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #000000;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+  color: #000000;
+}
+.links {
+  float: right;
+}
+.links dl {
+  float: left;
+  margin-left: 100px;
+}
+.links dt {
+  height: 35px;
+  font-size: 16px;
+  color: #333;
+}
+.links dd a {
+  font-size: 12px;
+  color: #333;
+}
+.links dd a:hover {
+  color: #004aff;
+}
