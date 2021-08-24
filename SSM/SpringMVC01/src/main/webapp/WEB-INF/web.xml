@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- Spring 配置文件并不会自动加载，需要手动配置，如果在 WEB-INF 路径下默认扫描名为 applicationContext.xml -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <!-- 表示用于加载 Bean 的 ApplicationContext 实现类，默认 WebApplicationContext -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+
+    <!-- ================================= servlet config ======================================= -->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 如果配置文件在 resources 下，需要配置此项，WEB-INF 下会自动寻找（serviceName-servlet.xml）-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc-servlet.xml</param-value>
+        </init-param>
+        <!-- 表示启动容器时初始化该 Servlet -->
+        <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <!--文件保存的临时目录，这个目录系统不会主动创建-->
+            <!--            <location>E:\\temp</location>-->
+            <!--上传的单个文件大小-->
+            <max-file-size>1024</max-file-size>
+            <!--上传的总文件大小-->
+            <max-request-size>1024</max-request-size>
+            <!--这个就是内存中保存的文件最大大小-->
+            <file-size-threshold>1024</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <!-- 表示哪些请求交给 Spring Web MVC 处理
+        "/" 是用来定义默认servlet 映射
+        "*.html" 表示拦截所有以 html 为扩展名的请求
+        -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- 标配解决乱码过滤器 -->
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceRequestEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceResponseEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
