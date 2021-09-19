@@ -17,7 +17,7 @@
     **面经：**
     * [中科软](https://github.com/huaxin0304/GoodGoodStudy/blob/master/Interview/documents/%E4%B8%AD%E7%A7%91%E8%BD%AF.md)
     * [涂鸦移动](https://github.com/huaxin0304/GoodGoodStudy/blob/master/Interview/documents/%E6%B6%82%E9%B8%A6%E7%A7%BB%E5%8A%A8.md)
-    * [绿洲游戏]()
+    * [绿洲游戏](https://github.com/huaxin0304/GoodGoodStudy/blob/master/Interview/documents/%E7%BB%BF%E6%B4%B2%E6%B8%B8%E6%88%8F.md)
     * [字节跳动](https://github.com/huaxin0304/GoodGoodStudy/blob/master/Interview/documents/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8.md)
 
 **【JavaStudy】：** 是学习 JavaSE、JavaWeb、JDBC 的一个综合项目，当时边学别整理的了笔记，感觉笔记还算条理清晰，代码就真是乱七八糟了
