@@ -557,12 +557,8 @@
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="js/jquery-1.10.2.min.js"></script>
-<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="js/jquery-migrate-1.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/modernizr.min.js"></script>
-<script src="js/jquery.nicescroll.js"></script>
+<!--common scripts for all pages-->
+<div th:replace="~{common :: #commonscript}"></div>
 
 <!--easy pie chart-->
 <script src="js/easypiechart/jquery.easypiechart.js"></script>
@@ -585,9 +581,6 @@
 <script src="js/flot-chart/jquery.flot.stack.js"></script>
 <script src="js/flot-chart/jquery.flot.time.js"></script>
 <script src="js/main-chart.js"></script>
-
-<!--common scripts for all pages-->
-<script src="js/scripts.js"></script>
 
 
 </body>

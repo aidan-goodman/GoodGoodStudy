@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>common fragment</title>
+
+<!-- CSS 公共样式 -->
     <div th:fragment="commoncss">
         <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
         <link href="css/style-responsive.css" th:href="@{/css/style-responsive.css}" rel="stylesheet">
@@ -183,7 +185,7 @@
                 </a>
                 <ul class="sub-menu-list">
                     <li>
-                        <a href="form_layouts.html">表单布局</a>
+                        <a th:href="@{/form_layouts}">表单布局</a>
                     </li>
                     <li>
                         <a href="form_advanced_components.html">先进的组件</a>
@@ -233,17 +235,19 @@
                     <i class="fa fa-th-list"></i>
                     <span>数据表</span>
                 </a>
-                <ul class="sub-menu-list">
-                    <li class="active">
+                <ul class="sub-menu-list" name="tables">
+                    <!-- class="active" -->
+                    <!--/*@thymesVar id="flag" type="java.lang.String"*/-->
+                    <li class="" th:classappend="${flag=='0'} ? 'active' : '' ">
                         <a th:href="@{/basic_table}">基本表</a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${flag=='1'} ? 'active' : '' ">
                         <a th:href="@{/dynamic_table}">先进的表</a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${flag=='2'} ? 'active' : '' ">
                         <a th:href="@{/responsive_table}">响应表</a>
                     </li>
-                    <li>
+                    <li class="" th:classappend="${flag=='3'} ? 'active' : '' ">
                         <a th:href="@{/editable_table}">可编辑表</a>
                     </li>
                 </ul>
@@ -318,6 +322,7 @@
         <!--侧边栏导航结束--> </div>
 </div>
 <!-- 左侧结束-->
+
 
 <!-- 头部分开始-->
 <div id="commonheader" class="header-section">
