@@ -9,19 +9,24 @@
     <artifactId>cloud-demo</artifactId>
     <version>1.0</version>
 
+    <!-- 工程结构 -->
     <modules>
         <module>user-service</module>
         <module>order-service</module>
         <module>eureka-server</module>
+        <module>feign-api</module>
+        <module>gateway</module>
     </modules>
 
     <packaging>pom</packaging>
 
+    <!-- 字符集 & 版本号 -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <cloud-alibaba.version>2.2.6.RELEASE</cloud-alibaba.version>
         <mysql.verson>8.0.22</mysql.verson>
         <mybatis.verson>2.2.0</mybatis.verson>
     </properties>
@@ -40,6 +45,14 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloud-Alibaba 管理依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

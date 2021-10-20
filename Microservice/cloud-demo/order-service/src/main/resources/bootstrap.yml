@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: orderservice    # 服务名称
+  profiles:
+    active: dev   #开发环境，这里是 dev
+  cloud:
+    nacos:
+      server-addr: 121.199.48.201:8848   # Nacos 地址
+      config:
+        file-extension: yaml    # 文件后缀名
+        server-addr: 121.199.48.201:8848
