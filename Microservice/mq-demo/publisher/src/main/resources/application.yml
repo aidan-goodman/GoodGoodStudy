@@ -1,0 +1,10 @@
+logging:
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+spring:
+  rabbitmq:
+    host: ubuntu.wsl
+    port: 5672
+    username: aidan
+    password: 123456
+    virtual-host: /

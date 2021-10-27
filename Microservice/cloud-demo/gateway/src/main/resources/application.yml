@@ -5,7 +5,7 @@ spring:
     name: gateway   # 服务名称
   cloud:
     nacos:
-      server-addr: 121.199.48.201:8848   # nacos 地址
+      server-addr: ubuntu.wsl:8848   # nacos 地址
     gateway:
       routes:   # 网关路由配置
         - id: user-service # 路由 id，自定义，只要唯一即可

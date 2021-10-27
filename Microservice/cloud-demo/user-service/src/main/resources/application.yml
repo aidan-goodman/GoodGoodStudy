@@ -5,7 +5,7 @@ spring:
     name: userservice
   cloud:
     nacos:
-      server-addr: 121.199.48.201:8848
+      server-addr: ubuntu.wsl:8848
       discovery:
         cluster-name: SD    # 搭建山东集群
   datasource:
