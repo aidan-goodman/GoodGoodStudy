@@ -6,5 +6,8 @@ func main() {
 	// hello_utf()
 	// hello_version()
 	// random()
-	judge()
+	// judge()
+	// switch_demo()
+	// goto_for()
+	for_character()
 }
