@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	fm "fmt"
 )
 
-func main() {
+func hello() {
 	// Hello World
-	fmt.Println("Hello World")
+	fm.Println("Hello World")
 
 	// Hello UTF
-	fmt.Println("Καλημέρα κόσμε; or こんにちは 世界")
+	fm.Println("Καλημέρα κόσμε; or こんにちは 世界")
 
 	// Hello alias
 	fm.Println("Hello alias")
